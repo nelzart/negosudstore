@@ -16,10 +16,10 @@ $title = "Accueil";
     
             </div>
 
-            <a action="">
+            <a href="?action=AllProducts">
                 <button class="p-2 pl-5 pr-5 bg-transparent border-2 border-[#B98F50] text-[#B98F50] text-lg rounded-lg transition-colors duration-700 transform 
                 hover:bg-[#B98F50] hover:text-[#4F0F15]">
-                Voir nos produitssssss
+                Voir nos produits
                 </button> 
             </a>
 

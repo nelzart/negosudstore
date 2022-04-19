@@ -7,9 +7,11 @@ session_start();
 require'controller/afficher.php';
 
 try { // On essaie de faire des choses
-
-    if (isset($_GET['action'])) {}
-
+    if (isset($_GET['action'])) {
+        if ($_GET['action'] == 'AllProducts'){
+            AllProducts();
+        }
+    }
     else {
         homeStore();
     }
