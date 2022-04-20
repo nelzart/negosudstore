@@ -3,13 +3,34 @@ $title = "Nos Produits";
 ?>
 
 <div class="bg-[#4F0F15] h-full w-[full] flex justify-center">
+    <div class="text-white">
+        <?php 
+        $tab = [];
+            foreach($response as $type) {
+
+                if (($type['Pro_IsWeb'] == 1) 
+                && (!in_array($type['Typ_Libelle'], $tab))){
+                    array_push($tab, $type['Typ_Libelle']);
+                }
+            }
+            foreach($tab as $checkbox) {
+
+                echo "<div><input type='checkbox' name='produits' value='".str_replace(' ', '', $checkbox)."' id='".str_replace(' ', '', $checkbox)."'><label for='".str_replace(' ', '', $checkbox)."'> $checkbox</label></div>";
+            }
+            
+        ?>
+
+            
+
+    </div>
     <div class="w-[70%]">
         <div class="grid gap-6 grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
+      
             <?php
                 foreach($response as $value) {
                     if ($value['Pro_IsWeb'] == 1){
                         echo '
-                            <div class="w-full max-w-sm mx-auto rounded-md shadow-md overflow-hidden bg-white">
+                            <div class="w-full max-w-sm mx-auto rounded-md shadow-md overflow-hidden bg-white produit '.str_replace(' ', '', $value['Typ_Libelle']).'">
                                 <div class="flex items-end justify-end "> 
                                     <div class="h-56 w-full bg-cover object-cover bg-center"> 
                                         <img class="h-56 w-full object-cover" src="https://via.placeholder.com/550 "/>
@@ -26,7 +47,7 @@ $title = "Nos Produits";
                                     .$value['Pro_Nom'].
                                     '</h3>
                                     <span class="text-gray-500 mt-2">'
-                                    .$value['Pro_Prix']. ' €
+                                    .$value['Pro_Prix']. ' € ' .$value['Typ_Libelle'].'
                                     </span>
                                 </div>
                             </div>
