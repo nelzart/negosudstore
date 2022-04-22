@@ -2,26 +2,6 @@
 $title = "Nos Produits";
 ?>
 
-<!-- <script>
-            var toggleBtn = document.getElementById('filter');
-            var ingredients = document.querySelector('.thoseIngredients');
-
-            toggleBtn.addEventListener('click', function() {
-                toggleBtn.classList.toggle('sm:hidden');
-                ingredients.classList.toggle('sm:hidden');
-            })
-
-        </script>
-
-<div id="thoseIngredients" class="thoseIngredients">
-    <div class="iconCircle slideIn slideToggle" type="button" value="ajouter">
-        <svg id="slideIn" class="slideToggle" xmlns="http://www.w3.org/2000/svg" enable-background="new 0 0 24 24" height="20px" viewBox="0 0 24 24" width="20px" fill="#000000"><g><polygon points="6.23,20.23 8,22 18,12 8,2 6.23,3.77 14.46,12"/></g></svg>
-    </div>
-    
-    <h3>• Ingrédients •</h3> 
-    
-</div> -->
-
 <div class="bg-[#4F0F15] h-full">
     <button class="h-[100%] absolute bg-[#B98F50] shadow-lg sm:flex lg:hidden">
         <span class="material-icons text-[#7B5F35]">&#xe5e1;</span>
@@ -45,9 +25,10 @@ $title = "Nos Produits";
                 }
                 
             ?>
-        <a href="?action=getMyCart" class="p-2 pl-5 pr-5 mt-10 bg-transparent border-2 border-[#B98F50] text-[#B98F50] text-lg rounded-lg transition-colors duration-700 transform hover:bg-[#B98F50] hover:text-[#4F0F15]">
+            
+        <button onclick="checkoutHandler(false)" class="p-2 pl-5 pr-5 mt-10 bg-transparent border-2 border-[#B98F50] text-[#B98F50] text-lg rounded-lg transition-colors duration-700 transform hover:bg-[#B98F50] hover:text-[#4F0F15]">
             <span class="material-icons">&#xe8cc;</span> Mon panier
-        </a> 
+        </button> 
         </div>
 
         <div class="w-[70%]">
@@ -61,7 +42,7 @@ $title = "Nos Produits";
                                 <div class="w-full max-w-sm mx-auto rounded-md shadow-black overflow-hidden bg-white hover:shadow-2xl transition-shadow ease-in duration-300 produit '.str_replace(' ', '', $value['Typ_Libelle']).'"> <a href="?action=getThisProduct&id='.$value['Pro_Id'].'">
                                     <div class="flex items-end justify-end "> 
                                         <div class="h-56 w-full bg-cover object-cover bg-center"> 
-                                            <img class="h-56 w-full object-cover" src="https://via.placeholder.com/550"/>
+                                            <img class="h-56 w-full object-cover" src="https://daxueconseil.fr/wp-content/uploads/2016/09/Daxue-Conseil-Les-produits-du-terroir-fran%C3%A7ais-en-Chine.jpg"/>
                                         </div>
                                         <button class="absolute p-2 rounded-full bg-[#4F0F15] border-4 border-white text-white mx-5 -my-5 hover:bg-[#9D1D2B]">
                                             <svg class="h-5 w-5" fill="none" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewBox="0 0 24 24" stroke="currentColor">
@@ -95,3 +76,6 @@ $title = "Nos Produits";
         </div> 
     </div> 
 </div>
+
+<?php
+require('cart.php');

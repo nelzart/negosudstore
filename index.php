@@ -58,11 +58,7 @@ try { // On essaie de faire des choses
             thisProduct();
           }
         }
-        elseif ($_GET['action'] == 'getMyCart'){
-          if (isset($_SESSION)){
-            getMyCart();
-          }
-        }
+
     }
     else {
         homeStore();

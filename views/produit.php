@@ -13,7 +13,7 @@
 <div class="relative bg-[#4F0F15] border-4 border-[#B98F50] px-6 pt-6 pb-4 shadow-xl ring-1 ring-gray-900/5 sm:mx-auto sm:max-w-lg sm:rounded-lg sm:px-10">
   <div class="mx-auto max-w-md">
     <div class="h-56 w-full bg-cover object-cover bg-center"> 
-      <img class="h-56 w-full object-cover" src="https://via.placeholder.com/550"/>
+      <img class="h-56 w-full object-cover" src="https://daxueconseil.fr/wp-content/uploads/2016/09/Daxue-Conseil-Les-produits-du-terroir-fran%C3%A7ais-en-Chine.jpg"/>
     </div>
     
     <div class="divide-y divide-[#B98F50]">
@@ -31,12 +31,22 @@
           <span class="px-4 py-2 mr-2 rounded-full border border-[#B98F50] text-[#B98F50] font-semibold text-sm flex align-center w-max ">
           <?=$response['Typ_Libelle']?>
           </span>
-          <span class="px-4 py-2 mr-2 rounded-full border border-[#B98F50] text-[#B98F50] font-semibold text-sm flex align-center w-max ">
-          <?=$response['Pro_Cepage']?>
-          </span>
-          <span class="px-4 py-2 mr-2 rounded-full border border-[#B98F50] text-[#B98F50] font-semibold text-sm flex align-center w-max ">
-          <?=$response['Pro_Annee']?>
-          </span>
+          <?php 
+          if ((!$response['Pro_Cepage'] == NULL) OR (!$response['Pro_Cepage'] == 0)) {
+            echo '<span class="px-4 py-2 mr-2 rounded-full border border-[#B98F50] text-[#B98F50] font-semibold text-sm flex align-center w-max ">
+            '.$response['Pro_Cepage'].'
+            </span>' ;
+          } else  {
+            echo '';
+          } 
+          if ((!$response['Pro_Annee'] == NULL) OR (!$response['Pro_Annee'] == 0)) {
+            echo '<span class="px-4 py-2 mr-2 rounded-full border border-[#B98F50] text-[#B98F50] font-semibold text-sm flex align-center w-max ">
+            '.$response['Pro_Annee'].'
+            </span>' ;
+          } else  {
+            echo '';
+          }
+          ?>
         </div>
       </div>
     

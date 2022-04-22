@@ -24,6 +24,10 @@ function thisProduct(){
 
     require('./views/produit.php');
 }
-function getMyCart(){
-    require('./views/cart.php');
+function getInMyCart(){
+    $myCart = [];
+    for ($i = 0 ; $i < 0 ; $i++){
+
+    }
+     
 }
