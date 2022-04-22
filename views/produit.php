@@ -25,7 +25,7 @@
         <?=$response['Fou_NomDomaine']?>
       </p>
     </div>
-      <div class="space-y-6 py-4 text-base leading-7 text-[#A17C45]">
+      <div class="space-y-6 py-4 text-base leading-7 text-[#A17C45] text-ellipsis">
           <p><?=$response['Pro_Description']?></p>
           <div class="flex">
           <span class="px-4 py-2 mr-2 rounded-full border border-[#B98F50] text-[#B98F50] font-semibold text-sm flex align-center w-max ">
