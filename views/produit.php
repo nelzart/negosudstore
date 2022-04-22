@@ -10,7 +10,7 @@
 
 <a href="?action=AllProducts" class="px-6 pt-6 pb-4  pt-8 text-[#B98F50] hover:text-[#7B5F35]">&larr; Retourner sur la page </a>
 
-<div class="relative bg-[#4F0F15] border-4 border-[#B98F50] px-6 pt-6 pb-4 shadow-xl ring-1 ring-gray-900/5 sm:mx-auto sm:max-w-lg sm:rounded-lg sm:px-10">
+<div class="relative max-h-full overflow-hidden bg-[#4F0F15] border-4 border-[#B98F50] px-6 pt-6 pb-4 shadow-xl ring-1 ring-gray-900/5 sm:mx-auto sm:max-w-lg sm:rounded-lg sm:px-10">
   <div class="mx-auto max-w-md">
     <div class="h-56 w-full bg-cover object-cover bg-center"> 
       <img class="h-56 w-full object-cover" src="https://daxueconseil.fr/wp-content/uploads/2016/09/Daxue-Conseil-Les-produits-du-terroir-fran%C3%A7ais-en-Chine.jpg"/>
@@ -25,7 +25,7 @@
         <?=$response['Fou_NomDomaine']?>
       </p>
     </div>
-      <div class="space-y-6 py-4 text-base leading-7 text-[#A17C45] text-ellipsis">
+      <div class="space-y-6 py-4 text-base leading-7 text-[#A17C45] text-ellipsis overflow-hidden">
           <p><?=$response['Pro_Description']?></p>
           <div class="flex">
           <span class="px-4 py-2 mr-2 rounded-full border border-[#B98F50] text-[#B98F50] font-semibold text-sm flex align-center w-max ">
