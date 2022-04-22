@@ -1,6 +1,8 @@
 <?php
 session_start();
 ?>
+<link href="https://fonts.googleapis.com/icon?family=Material+Icons"
+      rel="stylesheet">
 <script src="https://cdn.tailwindcss.com"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/lodash.js/4.17.4/lodash.min.js"></script>
 <div id="output"></div>
@@ -50,6 +52,16 @@ try { // On essaie de faire des choses
     if (isset($_GET['action'])) {
         if ($_GET['action'] == 'AllProducts'){
             AllProducts();
+        }
+        elseif ($_GET['action'] == 'getThisProduct'){
+          if (isset($_GET['id'])){
+            thisProduct();
+          }
+        }
+        elseif ($_GET['action'] == 'getMyCart'){
+          if (isset($_SESSION)){
+            getMyCart();
+          }
         }
     }
     else {
