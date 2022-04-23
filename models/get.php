@@ -20,25 +20,6 @@ function getAllProducts(){
     return $response;
 }
 
-// function getPictures(){
-//     $curl = curl_init();
-//     curl_setopt_array($curl, array(
-//         CURLOPT_URL => 'https://jsonplaceholder.typicode.com/photos',
-//         CURLOPT_RETURNTRANSFER => true,
-//         CURLOPT_TIMEOUT => 30,
-//         CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
-//         CURLOPT_CUSTOMREQUEST => 'GET',
-//         CURLOPT_HTTPHEADER => array(
-//             'cache-control: no-cache'
-//         ),
-//         $response = curl_exec($curl);
-//         $err = curl_error($curl);
-    
-//         curl_close($curl);
-    
-//         return $response;
-//     }
-// ));
 
 function getThisProduct(){
     $id = $_GET['id'];
@@ -60,3 +41,22 @@ function getThisProduct(){
 
     return $response;
 }
+
+
+// j'ajoute un produit qui est traduit du php
+// id_php = id JS
+// var monObjet{
+//     'id' = 1,
+//     'qte' = 10
+// }
+// pousser dans le LS 
+
+// DANS PANIER
+// var monObjet;
+    // monObjet.id 
+    // monObjet.qte
+
+    // $ID = monObjet.id 
+    // SI ($ID != NULL){
+        // getThisProduct()
+    // }

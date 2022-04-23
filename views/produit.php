@@ -20,7 +20,7 @@
       <div class="text-[#B98F50] pt-8 text-base font-semibold leading-7 uppercase flex justify-between">
         <p> <?=$response['Pro_Nom']?> </p>
         <p><?=$response['Pro_Prix']?> €</p>
-</div>
+      </div>
       <p class="text-[#7B5F35] text-base font-semibold uppercase">
         <?=$response['Fou_NomDomaine']?>
       </p>
@@ -32,14 +32,14 @@
           <?=$response['Typ_Libelle']?>
           </span>
           <?php 
-          if ((!$response['Pro_Cepage'] == NULL) OR (!$response['Pro_Cepage'] == 0)) {
+          if ((!$response['Pro_Cepage'] == NULL) OR (!$response['Pro_Cepage'] == 0) ) {
             echo '<span class="px-4 py-2 mr-2 rounded-full border border-[#B98F50] text-[#B98F50] font-semibold text-sm flex align-center w-max ">
             '.$response['Pro_Cepage'].'
             </span>' ;
           } else  {
             echo '';
           } 
-          if ((!$response['Pro_Annee'] == NULL) OR (!$response['Pro_Annee'] == 0)) {
+          if ((!$response['Pro_Annee'] == NULL) OR (!$response['Pro_Annee'] == 0) ) {
             echo '<span class="px-4 py-2 mr-2 rounded-full border border-[#B98F50] text-[#B98F50] font-semibold text-sm flex align-center w-max ">
             '.$response['Pro_Annee'].'
             </span>' ;
@@ -48,8 +48,7 @@
           }
           ?>
         </div>
-      </div>
-    
+      </div>    
     </div>
   </div>
-  </div>
+</div>

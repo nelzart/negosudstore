@@ -18,11 +18,8 @@
             <p class="text-xs leading-3 md:pt-0 pt-4 text-[#B98F50]"><?=$value['Fou_NomDomaine']?></p>
             <div class="flex items-center justify-between w-full pt-1">
               <p class="text-base font-black leading-none text-[#B98F50] uppercase"><?=$value['Pro_Nom']?></p>
-              <select aria-label="Select quantity" class="py-2 px-1 border border-gray-200 mr-6 focus:outline-none ">
-                <option>01</option>
-                <option>02</option>
-                <option>03</option>
-              </select>
+              <input aria-label="Select quantity" class="py-2 px-1 border border-gray-200 mr-6 focus:outline-none "/>
+               
             </div>
             <p class="text-xs leading-3 text-[#B98F50] pt-2"><?= $value['Typ_Libelle'] ?></p>
             <?php
@@ -97,25 +94,7 @@
     }
   </style>
 </div>
-<script>
-let checkout = document.getElementById("checkout");
-let checdiv = document.getElementById("chec-div");
-let flag3 = false;
-const checkoutHandler = () => {
-  if (!flag3) {
-    checkout.classList.add("translate-x-full");
-    checkout.classList.remove("translate-x-0");
-    setTimeout(function () {
-      checdiv.classList.add("hidden");
-    }, 1000);
-    flag3 = true;
-  } else {
-    setTimeout(function () {
-      checkout.classList.remove("translate-x-full");
-      checkout.classList.add("translate-x-0");
-    }, 1000);
-    checdiv.classList.remove("hidden");
-    flag3 = false;
-  }
-};
+
+<script src="./public/affichePanier.js">
+
 </script>
