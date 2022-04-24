@@ -24,10 +24,11 @@ function thisProduct(){
 
     require('./views/produit.php');
 }
-function getInMyCart(){
-    $myCart = [];
-    for ($i = 0 ; $i < 0 ; $i++){
 
-    }
-     
+function addthisProduct(){
+    $product = getThisProduct($_GET['id']);
+    $id = $_GET['id'];
+
+    $response = json_decode($product, true);
+
 }

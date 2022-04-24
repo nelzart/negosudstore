@@ -45,10 +45,13 @@ function getThisProduct(){
 
 // j'ajoute un produit qui est traduit du php
 // id_php = id JS
-// var monObjet{
+// var monObjet
+ // [
+    // {
 //     'id' = 1,
 //     'qte' = 10
-// }
+    // }
+// ]
 // pousser dans le LS 
 
 // DANS PANIER
