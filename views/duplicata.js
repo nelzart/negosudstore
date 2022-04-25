@@ -291,3 +291,35 @@ require('cart.php');
                          </div>
                      </div>`; console.log(item.inCart);
                  });
+
+
+
+
+
+
+
+                 <div class="product md:flex items-strech py-8 md:py-10 lg:py-8 border-t border-[#B98F50] text-[#B98F50] justify-center items-center">
+                    <ion-icon class="material-icons cursor-pointer hover:text-[#7B5F35]">&#xe92e;</ion-icon>
+                    <div class="md:w-4/12 2xl:w-1/4 w-full">
+                        <img src="https://daxueconseil.fr/wp-content/uploads/2016/09/Daxue-Conseil-Les-produits-du-terroir-fran%C3%A7ais-en-Chine.jpg" class="h-full object-center object-cover md:block hidden" />
+                        <img src="https://daxueconseil.fr/wp-content/uploads/2016/09/Daxue-Conseil-Les-produits-du-terroir-fran%C3%A7ais-en-Chine.jpg" class="md:hidden w-full h-full object-center object-cover" />
+                    </div>
+                    <div class="md:pl-3 md:w-8/12 2xl:w-3/4 flex flex-col justify-center">
+                        <span class="sm-hide text-xs leading-3 md:pt-0 pt-4 text-[#B98F50]">
+                            ${item.Fou_NomDomaine}
+                        </span>
+                        <span class="sm-hide flex items-center justify-between w-full pt-1">
+                            <span class="text-base font-black leading-none text-[#B98F50] uppercase">
+                                ${item.Pro_Nom}
+                            </span>
+                        </span>
+                        <div class="price sm-hide text-base font-black leading-none text-amber-500">
+                            ${item.Pro_Prix} €
+                        </div>
+                    </div>
+                    <div class="quantity float-right flex flex-col items-center">
+                        <ion-icon class="increase material-icons cursor-pointer hover:text-[#7B5F35]" name="arrow-dropright-circle"> &#xe148; </ion-icon>  
+                            <span>${item.inCart}</span>
+                        <ion-icon class="decrease material-icons cursor-pointer cursor-pointer hover:text-[#7B5F35]" name="arrow-dropleft-circle"> &#xe15d; </ion-icon>
+                    </div>
+                </div>

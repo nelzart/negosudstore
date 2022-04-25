@@ -37,7 +37,7 @@
           <div>
             <div class="flex items-center pb-6 justify-between lg:pt-5 pt-20">
               <p class="text-2xl leading-normal text-[#B98F50]">Total</p>
-              <p class="text-2xl font-bold leading-normal text-right text-[#B98F50]">XXX</p>
+              <p class="text-2xl font-bold leading-normal text-right text-[#B98F50]"></p>
             </div>
             <button onclick="checkoutHandler1(true)" class="text-lg antialiased font-bold leading-none w-full py-5 rounded-sm  border-[#B98F50] border-2 text-[#B98F50] uppercase bold">Valider le panier</button>
           </div>
