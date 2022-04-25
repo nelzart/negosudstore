@@ -9,10 +9,12 @@
           <p class="text-sm pl-2 leading-none text-[#B98F50]">&larr; Retour sur la page</p>
         </div>
         <p class="lg:text-4xl text-3xl font-black leading-10 text-[#B98F50] pt-3">Mon Panier</p>
-        <div class="products">
+        <div class="container-products">
+          <div class="products">
 
-        
-        </div>    
+          
+          </div>        
+        </div> 
         
       </div>
       <div class="lg:w-96 md:w-8/12 w-full bg-gray-100 h-full">
