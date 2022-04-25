@@ -100,32 +100,36 @@ require('cart.php');
 ?>
 
 <script>
+    window.onload = displayCart();
+    
+    // C'est 
     let carts = document.querySelectorAll('.add-cart');
 
+    // recuperation données API et réencodage en json
     let products = <?php echo json_encode($response) ;?>
     
-    
-    // if (products.Pro_IsWeb) 
-    // alert(carts)
+    // Detecter et isoler 
     // console.log(products)
-    
     let isWeb = [];
-    for(let i = 0; i <= carts.length; i++) {
+    for(let i = 0; i < products.length; i++) {
         if (products[i].Pro_IsWeb !== 0) {
             isWeb.push(products[i])
-        }}            
-        console.log(isWeb);
-        for(let j = 0; j <= carts.length; j++) {                
-            if (isWeb[j]['Pro_IsWeb'] == 1) {
-                
-                carts[j].addEventListener('click', () => {
-                    alert('produit ajouté '); 
-                    cartNumbers(isWeb[j]);
-                    totalCost(isWeb[j]);
-                    displayCart();
-                })
-            } 
         }
+    }            
+    // console.log(isWeb);
+    // console.log(carts);
+    // parcourir les éléments HTML isWeb. Chaque éléments est égale aux nb d'elem de Carts
+    for(let j = 0; j < isWeb.length; j++) {                
+        // if (isWeb[j]['Pro_IsWeb'] == 1) {            
+        carts[j].addEventListener('click', () => {
+            alert('produit ajouté'); 
+            cartNumbers(isWeb[j]);
+            totalCost(isWeb[j]);
+
+            displayCart();
+            })
+        // } 
+    }
     
 
 function onLoadCartNumbers() {
@@ -141,7 +145,7 @@ function cartNumbers(product, action) {
 
     let cartItems = localStorage.getItem('productsInCart');
     cartItems = JSON.parse(cartItems);
-
+    
     if( action ) {
         localStorage.setItem("cartNumbers", productNumbers - 1);
         document.querySelector('.cart span').textContent = productNumbers - 1;
@@ -157,30 +161,34 @@ function cartNumbers(product, action) {
 }
 
 function setItems(product) {
-    // let productNumbers = localStorage.getItem('cartNumbers');
-    // productNumbers = parseInt(productNumbers);
+
     let cartItems = localStorage.getItem('productsInCart');
     cartItems = JSON.parse(cartItems);
 
     if(cartItems != null) {
-        let currentProduct = product.Pro_Id;
-    
-        if( cartItems[currentProduct] == undefined ) {
-            cartItems = {
-                ...cartItems,
-                [currentProduct]: product
+        
+        let existProduct ;
+        for (i = 0 ; i < cartItems.length ; i ++) {
+            if ( cartItems[i].Pro_Id == product.Pro_Id){
+                existProduct = cartItems[i];
             }
-        } 
-        cartItems[currentProduct].inCart += 1;
+        } if( existProduct == undefined ) {
+            product.inCart = 1;
+            cartItems.push(product);
+        } else {
+            existProduct.inCart += 1;
+        }
 
     } else {
         product.inCart = 1;
-        cartItems = { 
-            [product.Pro_Id]: product
-        };
+        cartItems = [];
+        // cartItems[`id-${product.Pro_Id}`] = product;
+        cartItems.push(product);
+        // console.log('je teste ' +cartItems);
     }
-
+    // console.log('mon second' +testMoi);
     localStorage.setItem('productsInCart', JSON.stringify(cartItems));
+    
 }
 
 function totalCost( product, action ) {
@@ -189,14 +197,14 @@ function totalCost( product, action ) {
     if( action) {
         cart = parseInt(cart);
 
-        localStorage.setItem("totalCost", cart - product.Pro_Prix);
+        localStorage.setItem("totalCost", cart - product.Pro_Prix*100);
     } else if(cart != null) {
         
         cart = parseInt(cart);
-        localStorage.setItem("totalCost", cart + product.Pro_Prix);
+        localStorage.setItem("totalCost", cart + product.Pro_Prix*100);
     
     } else {
-        localStorage.setItem("totalCost", product.Pro_Prix);
+        localStorage.setItem("totalCost", product.Pro_Prix*100);
     }
 }
 
@@ -204,49 +212,51 @@ function displayCart() {
     // alert('coucou')
     let cartItems = localStorage.getItem('productsInCart');
     cartItems = JSON.parse(cartItems);
+    
+    // console.log('cart : ' +cartItems)
 
     let cart = localStorage.getItem("totalCost");
-    cart = parseInt(cart);
+    cart = parseInt(cart / 100);
 
     let productContainer = document.querySelector('.products');    
 
-    console.log(cartItems)
-    console.log(productContainer)
+    // console.log(productContainer)
     if( cartItems && productContainer ) {
         productContainer.innerHTML = '';
-        Object.values(cartItems).map( (item, index) => {
-            productContainer.innerHTML += `
-            <div class="product md:flex items-strech py-8 md:py-10 lg:py-8 border-t border-[#B98F50]"><ion-icon class="material-icons">&#xe92e;</ion-icon>
-                <div class="md:w-4/12 2xl:w-1/4 w-full">
-                    <img src="https://daxueconseil.fr/wp-content/uploads/2016/09/Daxue-Conseil-Les-produits-du-terroir-fran%C3%A7ais-en-Chine.jpg" class="h-full object-center object-cover md:block hidden" />
-                    <img src="https://daxueconseil.fr/wp-content/uploads/2016/09/Daxue-Conseil-Les-produits-du-terroir-fran%C3%A7ais-en-Chine.jpg" class="md:hidden w-full h-full object-center object-cover" />
-                </div>
-                <div class="md:pl-3 md:w-8/12 2xl:w-3/4 flex flex-col  justify-center">
-                    <span class="sm-hide text-xs leading-3 md:pt-0 pt-4 text-[#B98F50]">
-                        ${item.Fou_NomDomaine}
-                    </span>
-                    <span class="sm-hide flex items-center justify-between w-full pt-1">
-                        <span class="text-base font-black leading-none text-[#B98F50] uppercase">
-                            ${item.Pro_Nom}
+            cartItems.map( (item, index) => {
+                // console.log('item ' +item +' index ' +index)
+                productContainer.innerHTML += `
+                <div class="product md:flex items-strech py-8 md:py-10 lg:py-8 border-t border-[#B98F50]"><ion-icon class="material-icons">&#xe92e;</ion-icon>
+                    <div class="md:w-4/12 2xl:w-1/4 w-full">
+                        <img src="https://daxueconseil.fr/wp-content/uploads/2016/09/Daxue-Conseil-Les-produits-du-terroir-fran%C3%A7ais-en-Chine.jpg" class="h-full object-center object-cover md:block hidden" />
+                        <img src="https://daxueconseil.fr/wp-content/uploads/2016/09/Daxue-Conseil-Les-produits-du-terroir-fran%C3%A7ais-en-Chine.jpg" class="md:hidden w-full h-full object-center object-cover" />
+                    </div>
+                    <div class="md:pl-3 md:w-8/12 2xl:w-3/4 flex flex-col  justify-center">
+                        <span class="sm-hide text-xs leading-3 md:pt-0 pt-4 text-[#B98F50]">
+                            ${item.Fou_NomDomaine}
                         </span>
-                    </span>
-                    <div class="price sm-hide text-base font-black leading-none text-amber-500">
-                        ${item.Pro_Prix} €
+                        <span class="sm-hide flex items-center justify-between w-full pt-1">
+                            <span class="text-base font-black leading-none text-[#B98F50] uppercase">
+                                ${item.Pro_Nom}
+                            </span>
+                        </span>
+                        <div class="price sm-hide text-base font-black leading-none text-amber-500">
+                            ${item.Pro_Prix} €
+                        </div>
                     </div>
                 </div>
-            </div>
-                <div class="quantity">
-                    <ion-icon class="decrease " name="arrow-dropleft-circle"></ion-icon>
-                        <span>${item.inCart}</span>
-                    <ion-icon class="increase" name="arrow-dropright-circle"></ion-icon>   
-                </div>
-            <div class="total">$${item.inCart * item.Pro_Prix},00</div>`;
-        });
+                    <div class="quantity">
+                        <ion-icon class="decrease " name="arrow-dropleft-circle"> - </ion-icon>
+                            <span>${item.inCart}</span>
+                        <ion-icon class="increase" name="arrow-dropright-circle"> + </ion-icon>   
+                    </div>
+                <div class="total">$${item.inCart * item.Pro_Prix}</div>`;
+            });
 
         productContainer.innerHTML += `
             <div class="basketTotalContainer">
                 <h4 class="basketTotalTitle">Basket Total</h4>
-                <h4 class="basketTotal">$${cart},00</h4>
+                <h4 class="basketTotal">$${cart} €</h4>
             </div>`
 
         deleteButtons();
@@ -260,16 +270,17 @@ function manageQuantity() {
     let increaseButtons = document.querySelectorAll('.increase');
     let currentQuantity = 0;
     let currentProduct = '';
+    let existProduct;
     let cartItems = localStorage.getItem('productsInCart');
     cartItems = JSON.parse(cartItems);
 
-    for(let i=0; i < increaseButtons.length; i++) {
+    for(let i=0; i < cartItems.length; i++) {
         decreaseButtons[i].addEventListener('click', () => {
-            console.log(cartItems);
+            // console.log(cartItems);
             currentQuantity = decreaseButtons[i].parentElement.querySelector('span').textContent;
-            console.log(currentQuantity);
+            // console.log(currentQuantity);
             currentProduct = decreaseButtons[i].parentElement.previousElementSibling.previousElementSibling.querySelector('span').textContent.toLocaleLowerCase().replace(/ /g,'').trim();
-            console.log(currentProduct);
+            // console.log(currentProduct);
 
             if( cartItems[currentProduct].inCart > 1 ) {
                 cartItems[currentProduct].inCart -= 1;
@@ -281,11 +292,11 @@ function manageQuantity() {
         });
 
         increaseButtons[i].addEventListener('click', () => {
-            console.log(cartItems);
+            // console.log(cartItems);
             currentQuantity = increaseButtons[i].parentElement.querySelector('span').textContent;
-            console.log(currentQuantity);
+            // console.log(currentQuantity);
             currentProduct = increaseButtons[i].parentElement.previousElementSibling.previousElementSibling.querySelector('span').textContent.toLocaleLowerCase().replace(/ /g,'').trim();
-            console.log(currentProduct);
+            // console.log(currentProduct);
 
             cartItems[currentProduct].inCart += 1;
             cartNumbers(cartItems[currentProduct]);
@@ -302,18 +313,17 @@ function deleteButtons() {
     let cartCost = localStorage.getItem("totalCost");
     let cartItems = localStorage.getItem('productsInCart');
     cartItems = JSON.parse(cartItems);
+    console.log(cartItems.length);
     let productName;
-    // console.log(cartItems);
-
+    
     for(let i=0; i < deleteButtons.length; i++) {
         deleteButtons[i].addEventListener('click', () => {
             productName = deleteButtons[i].parentElement.textContent.toLocaleLowerCase().replace(/ /g,'').trim();
-            alert(productName)
+            localStorage.setItem('cartNumbers', productNumbers - cartItems[i].inCart);
+            localStorage.setItem('totalCost', cartCost - ((cartItems[i].Pro_Prix*100) * cartItems[i].inCart)) ;
+        
+            cartItems.splice(i, 1)
             
-            localStorage.setItem('cartNumbers', productNumbers - cartItems[productName].inCart);
-            localStorage.setItem('totalCost', cartCost - ( cartItems[productName].price * cartItems[productName].inCart));
-
-            delete cartItems[productName];
             localStorage.setItem('productsInCart', JSON.stringify(cartItems));
 
             displayCart();
