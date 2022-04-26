@@ -47,18 +47,32 @@ function setVisibility() {
 
 <?php
 require'controller/afficher.php';
+require'controller/envoyer.php';
 
 try { // On essaie de faire des choses
     if (isset($_GET['action'])) {
-        if ($_GET['action'] == 'AllProducts'){
-            AllProducts();
+      if ($_GET['action'] == 'AllProducts'){
+          AllProducts();
+      }
+      elseif ($_GET['action'] == 'getThisProduct'){
+        if (isset($_GET['id'])){
+          thisProduct();
         }
-        elseif ($_GET['action'] == 'getThisProduct'){
-          if (isset($_GET['id'])){
-            thisProduct();
-          }
+      }
+      elseif ($_GET['action'] == 'sendCommand'){
+        if(!empty($_POST['prenom']) 
+        && !empty($_POST['Nom']) 
+        && !empty($_POST['email']) 
+        && !empty($_POST['phone']) 
+        && !empty($_POST['mdp']) 
+        && !empty($_POST['pays']) 
+        && !empty($_POST['codepostal']) 
+        && !empty($_POST['ville']) 
+        && !empty($_POST['adresse']))
+        {
+          sendCommand($_POST['adresse'], $_POST['adressecomp'], $_POST['codepostal'], $_POST['ville'], $_POST['pays'], $_POST['phone'], $_POST['mdp'], $_POST['email'], $_POST['Nom'], $_POST['prenom']);                         
         }
-
+      }
     }
     else {
         homeStore();

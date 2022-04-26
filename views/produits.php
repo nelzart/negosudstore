@@ -36,10 +36,11 @@ $title = "Nos Produits";
             </button> 
         </div> 
     </div>
+    
     <script>
-        var toggleBtn = document.getElementById('showFilter');
-        var ingredients = document.getElementById('myFilters');
-        var ingredients2 = document.getElementById('myFilters2');
+        let toggleBtn = document.getElementById('showFilter');
+        let ingredients = document.getElementById('myFilters');
+        let ingredients2 = document.getElementById('myFilters2');
 
         toggleBtn.addEventListener('click', function() {
             toggleBtn.classList.toggle('translate-x-2/4');
@@ -48,19 +49,19 @@ $title = "Nos Produits";
         })
     </script>
 
-    <div class="w-[90%] lg:w-[75%] flex justify-evenly">
-        <div class="grid gap-6 grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 mt-6">
+    <div class="w-[90%] lg:w-[75%] ">
+        <div class="grid gap-6 grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 mt-6 mb-6">
             <?php
                     foreach($response as $value) {                                                
                         if ($value['Pro_IsWeb'] == 1){
                             echo '   
-                                                         
                                 <div id="'.$value['Pro_Id'].'"  class="w-full h-80 prendlui max-w-sm mx-auto rounded-md shadow-black overflow-hidden bg-white hover:shadow-2xl transition-shadow ease-in duration-300 produit '.str_replace(' ', '', $value['Typ_Libelle']).'"> 
-                                    <dza href="?action=getThisProduct&id='.$value['Pro_Id'].'">
-                                        <div class="flex items-end justify-end "> 
-                                            <div class="h-56 w-full bg-cover object-cover bg-center"> 
+                                    <div class="flex items-end justify-end "> 
+                                        <div class="h-56 w-full bg-cover object-cover bg-center"> 
+                                            <a href="?action=getThisProduct&id='.$value['Pro_Id'].'">
                                                 <img class="h-56 w-full object-cover" src="https://daxueconseil.fr/wp-content/uploads/2016/09/Daxue-Conseil-Les-produits-du-terroir-fran%C3%A7ais-en-Chine.jpg"/>
-                                            </div>
+                                            </a>
+                                        </div>
                                             <button id="add-cart" class="add-cart absolute p-2 rounded-full bg-[#4F0F15] border-4 border-white text-white mx-5 -my-5 hover:bg-[#9D1D2B]">
                                                 <svg class="h-5 w-5" fill="none" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewBox="0 0 24 24" stroke="currentColor">
                                                     <path d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13L5.4 5M7 13l-2.293 2.293c-.63.63-.184 1.707.707 1.707H17m0 0a2 2 0 100 4 2 2 0 000-4zm-8 2a2 2 0 11-4 0 2 2 0 014 0z">                                            
@@ -84,17 +85,12 @@ $title = "Nos Produits";
                                                 
                                             </div>                                            
                                         </div> 
-                                    </a>
-                                </div>
-                            '; 
-                        }
-                        
-                        // if (!in_array($index, $myIndexTab)){
-                        //     array_push($myIndexTab, $index);}
-                        //     var_dump($myIndexTab);
-                        // $index++;
-                    }
-                    ?>
+                                    </div>
+                                    '; 
+                                }
+                            }
+                            ?>
+                            </div>
             </div>   
         </div> 
     </div> 
@@ -351,136 +347,6 @@ function deleteButtons() {
 
 onLoadCartNumbers();
 displayCart();
-
-//     if( cartItems && productContainer ) {
-//         productContainer.innerHTML = '';
-//         Object.values(cartItems).map((item, index) => {
-//             productContainer.innerHTML += 
-//             `<div class="product md:flex items-strech py-8 md:py-10 lg:py-8 border-t border-[#B98F50]">coucou
-//                 <div class="md:w-4/12 2xl:w-1/4 w-full">
-//                     <img src="https://daxueconseil.fr/wp-content/uploads/2016/09/Daxue-Conseil-Les-produits-du-terroir-fran%C3%A7ais-en-Chine.jpg" class="h-full object-center object-cover md:block hidden" />
-//                     <img src="https://daxueconseil.fr/wp-content/uploads/2016/09/Daxue-Conseil-Les-produits-du-terroir-fran%C3%A7ais-en-Chine.jpg" class="md:hidden w-full h-full object-center object-cover" />
-//                 </div>
-//                 <div class="md:pl-3 md:w-8/12 2xl:w-3/4 flex flex-col justify-center">
-//                     <p class="text-xs leading-3 md:pt-0 pt-4 text-[#B98F50]">${item.Fou_NomDomaine} coucou</p>
-//                         <div class="flex items-center justify-between w-full pt-1">
-//                             <p class="text-base font-black leading-none text-[#B98F50] uppercase">${item.Pro_Nom}</p>
-//                             <input aria-label="Select quantity" class="py-2 px-1 border border-gray-200 mr-6 focus:outline-none "/>
-//                         </div>
-//                         <p class="text-xs leading-3 text-[#B98F50] pt-2">${item.Typ_Libelle}</p>
-//                         // <?php
-//                         //     if ((!$response[$index]['Pro_Cepage'] == NULL) OR (!$response[$index]['Pro_Cepage'] == 0)) {
-//                         //         echo '<p class="text-xs leading-3 text-[#B98F50] py-4">
-//                         //                 '.$response[$index]['Pro_Cepage'].'
-//                         //         </p>' ;
-//                         //     } else  {
-//                         //         echo '';
-//                         //     } 
-//                         //     if ((!$response[$index]['Pro_Annee'] == NULL) OR (!$response[$index]['Pro_Annee'] == 0)) {
-//                         //         echo '<p class="w-96 text-xs leading-3 text-[#B98F50] pt-2">
-//                         //             - '.$response[$index]['Pro_Annee'].' -
-//                         //         </p>' ;
-//                         //     } else  {
-//                         //         echo '';
-//                         //     } ?>
-//                             <div class="flex items-center justify-between pt-5">
-//                                 <div class="flex items-center">
-//                                     <p class="text-xs leading-3 underline text-amber-500 pl-5 cursor-pointer">Retirer du panier</p>
-//                                 </div>
-//                                 <p class="price text-base font-black leading-none text-amber-500">${item.Pro_Prix} €</p>
-//                                 <input type="hidden" value=${item.Pro_Prix} />
-//                                 <div class="quantity">
-//                                     <ion-icon class="decrease " name="arrow-dropleft-circle"></ion-icon>
-//                                         <span>${item.inCart}</span>
-//                                     <ion-icon class="increase" name="arrow-dropright-circle"></ion-icon>   
-//                                 </div>
-//                                 <div class="total">$${item.inCart * item.Pro_Prix},00</div>
-//                             </div>
-//                         </div>
-//                     </div>`; console.log(item.inCart);
-//                 });
-
-//         productContainer.innerHTML += `
-//             <div class="basketTotalContainer">
-//                 <h4 class="basketTotalTitle">Basket Total</h4>
-//                 <h4 class="basketTotal">$${cart},00</h4>
-//             </div>`
-
-//         deleteButtons();
-//         manageQuantity();
-//     }
-// }
-
-
-// function manageQuantity() {
-//     let decreaseButtons = document.querySelectorAll('.decrease');
-//     let increaseButtons = document.querySelectorAll('.increase');
-//     let currentQuantity = 0;
-//     let currentProduct = '';
-//     let cartItems = localStorage.getItem('productsInCart');
-//     cartItems = JSON.parse(cartItems);
-
-//     for(let i=0; i < increaseButtons.length; i++) {
-//         decreaseButtons[i].addEventListener('click', () => {
-//             console.log(cartItems);
-//             currentQuantity = decreaseButtons[i].parentElement.querySelector('span').textContent;
-//             console.log(currentQuantity);
-//             currentProduct = decreaseButtons[i].parentElement.previousElementSibling.previousElementSibling.querySelector('span').textContent.toLocaleLowerCase().replace(/ /g,'').trim();
-//             console.log(currentProduct);
-
-//             if( cartItems[currentProduct].inCart > 1 ) {
-//                 cartItems[currentProduct].inCart -= 1;
-//                 cartNumbers(cartItems[currentProduct], "decrease");
-//                 totalCost(cartItems[currentProduct], "decrease");
-//                 localStorage.setItem('productsInCart', JSON.stringify(cartItems));
-//                 displayCart();
-//             }
-//         });
-
-//         increaseButtons[i].addEventListener('click', () => {
-//             console.log(cartItems);
-//             currentQuantity = increaseButtons[i].parentElement.querySelector('span').textContent;
-//             console.log(currentQuantity);
-//             currentProduct = increaseButtons[i].parentElement.previousElementSibling.previousElementSibling.querySelector('span').textContent.toLocaleLowerCase().replace(/ /g,'').trim();
-//             console.log(currentProduct);
-
-//             cartItems[currentProduct].inCart += 1;
-//             cartNumbers(cartItems[currentProduct]);
-//             totalCost(cartItems[currentProduct]);
-//             localStorage.setItem('productsInCart', JSON.stringify(cartItems));
-//             displayCart();
-//         });
-//     }
-// }
-
-// function deleteButtons() {
-//     let deleteButtons = document.querySelectorAll('.product ion-icon');
-//     let productNumbers = localStorage.getItem('cartNumbers');
-//     let cartCost = localStorage.getItem("totalCost");
-//     let cartItems = localStorage.getItem('productsInCart');
-//     cartItems = JSON.parse(cartItems);
-//     let productName;
-//     console.log(cartItems);
-
-//     for(let i=0; i < deleteButtons.length; i++) {
-//         deleteButtons[i].addEventListener('click', () => {
-//             productName = deleteButtons[i].parentElement.textContent.toLocaleLowerCase().replace(/ /g,'').trim();
-            
-//             localStorage.setItem('cartNumbers', productNumbers - cartItems[productName].inCart);
-//             localStorage.setItem('totalCost', cartCost - ( cartItems[productName].Pro_Prix * cartItems[productName].inCart));
-
-//             delete cartItems[productName];
-//             localStorage.setItem('productsInCart', JSON.stringify(cartItems));
-
-//             displayCart();
-//             onLoadCartNumbers();
-//         })
-//     }
-// }
-
-// onLoadCartNumbers();
-// displayCart();
-
 </script>
 
 
