@@ -217,7 +217,8 @@ function displayCart() {
     let cartItems = localStorage.getItem('productsInCart');
     cartItems = JSON.parse(cartItems);
     
-    // console.log('cart : ' +cartItems)
+    // let nbrs = cartItems.length;
+    // console.log(nbrs);
 
     let cart = localStorage.getItem("totalCost");
     cart = parseFloat(cart / 100);
@@ -226,7 +227,8 @@ function displayCart() {
 
     // console.log(productContainer)
     if( cartItems && productContainer ) {
-        productContainer.innerHTML = '';
+        // for (i = 0 ; i < nbrs ; i++) {
+            productContainer.innerHTML = '';
             cartItems.map( (item, index) => {
                 // console.log('item ' +item +' index ' +index)
                 productContainer.innerHTML += `
@@ -254,6 +256,8 @@ function displayCart() {
                     <div class="quantity float-both flex flex-col items-center">
                         <ion-icon class="increase material-icons cursor-pointer hover:text-[#7B5F35]" name="arrow-dropright-circle"> &#xe148; </ion-icon>  
                             <span>${item.inCart}</span>
+                            <input type='text' class='hidden' name='incart-${index}' id='incart-${index}' value='${item.inCart}' >
+                            <input type='text' class='hidden' name='idprod-${index}' id='idprod-${index}' value='${item.Pro_Id}' >
                         <ion-icon class="decrease material-icons cursor-pointer cursor-pointer hover:text-[#7B5F35]" name="arrow-dropleft-circle"> &#xe15d; </ion-icon>
                     </div>
                 </div>
@@ -269,8 +273,8 @@ function displayCart() {
 
         deleteButtons();
         manageQuantity();
-    }
-}
+    }}
+// }
 
 
 function manageQuantity() {

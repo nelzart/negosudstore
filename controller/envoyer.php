@@ -18,6 +18,7 @@ require('models/post.php');
 
 
 function sendCommand(){
+    
 //  traitement des données
     $Uti_Adresse = $_POST['adresse'];
     $Uti_CompAdress = $_POST['adressecomp'];
@@ -30,7 +31,12 @@ function sendCommand(){
     $Cli_Nom = $_POST['Nom'];
     $Cli_Prenom = $_POST['prenom'];
     $Coc_Eta_Id = 2;
-
+    $Pro_Id =  2;
+    $Pro_Quantite = 5 ;
+    // $Pro_Id =  $_POST['idprod'.$i];
+    // $Pro_Quantite = $_POST['incart'.$j] ;    
+    
+    $tab = [];
     $sendToJson = array(
         'Uti_Adresse' => $Uti_Adresse, 
         'Uti_CompAdresse' => $Uti_CompAdress, 
@@ -42,16 +48,16 @@ function sendCommand(){
         'Uti_MailContact' => $Uti_MailContact,
         'Cli_Nom' => $Cli_Nom,
         'Cli_Prenom' => $Cli_Prenom,
-        'Coc_Eta_Id' => $Coc_Eta_Id
+        'Coc_Eta_Id' => $Coc_Eta_Id,
+        'Pro_Id' => $Pro_Id,
+        'Pro_Quantite' => $Pro_Quantite
     );
 
-echo json_encode($sendToJson);
-// $Pro_Id  = ;
-// $Pro_Quantite = ;
+    array_push($tab, $sendToJson);
 
+    $sendmytab = json_encode($tab);
 
-
-
-    // echo "commande envoyé" ;
+    var_dump($sendmytab);
+    return $sendmytab;
 
 }

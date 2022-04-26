@@ -10,6 +10,7 @@
         </div>
         <p class="lg:text-4xl text-3xl font-black leading-10 text-[#B98F50] pt-3">Mon Panier</p>
         <div class="container-products">
+        <form method="POST" action="?action=sendCommand">
           <div class="products">
 
           
@@ -42,7 +43,7 @@
               <p class="text-2xl font-bold leading-normal text-right text-[#B98F50]"></p>
             </div>
 
-            <form method="POST" action="?action=sendCommand">
+            
 
               <div class="form-group mb-2">
                 <input type="email" class="form-control block w-full px-3 py-1.5 text-base font-normal text-[#B98F50] bg-transparent bg-clip-padding border border-solid border-[#B98F50] rounded transition ease-in-out m-0 focus:text-[#7B5F35] focus:border-[#7B5F35] focus:outline-none placeholder:text-[#9D1D2B] " required name="email" id="email" placeholder="Votre mail">
