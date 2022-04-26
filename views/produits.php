@@ -7,46 +7,55 @@ $title = "Nos Produits";
 
 
 <body class="bg-[#4F0F15]">
-    
-    
-    <div class="bg-[#4F0F15] h-max bg-fixed flex">
-        <button class="h-[100%] absolute bg-[#B98F50] shadow-lg sm:flex lg:hidden ">
-            <span class="material-icons text-[#7B5F35]">&#xe5e1;</span>
-        </button>
-        <div class="w-[20%] bg-fixed flex justify-around">
-            <div id="filter" class=" flex m-6 flex-col hidden lg:flex">
-            <img src='./public/logo_negosud.svg' alt='' width={350} min-width={250} class="mb-8"/>
+
+    <div id="myFilters" class="bg-[#4F0F15] h-[100%] bg-fixed flex transition duration-200">
+        <div class=" lg:w-[20%] bg-fixed flex justify-center">
+            <button id="showFilter" class="h-[100%]  bg-[#B98F50] shadow-lg flex items-center lg:hidden transition duration-200 order-last">
+                <span class="material-icons text-[#4F0F15]">&#xe5e1;</span>
+            </button>
+            <div id="myFilters2" class=" flex m-6 flex-col hidden lg:flex order-first">
+                <img src='./public/logo_negosud.svg' alt='' width={350} min-width={250} class="mb-8"/>
             
-            <h3 class="text-2xl text-[#B98F50] mb-6">Filtrer les produits</h3>
-            <?php 
-                $tab = [];
-                foreach($response as $type) {
-                    if (($type['Pro_IsWeb'] == 1) 
-                    && (!in_array($type['Typ_Libelle'], $tab))){
-                        array_push($tab, $type['Typ_Libelle']);
+                <h3 class="text-2xl text-[#B98F50] mb-6">Filtrer les produits</h3>
+                <?php 
+                    $tab = [];
+                    foreach($response as $type) {
+                        if (($type['Pro_IsWeb'] == 1) 
+                        && (!in_array($type['Typ_Libelle'], $tab))){
+                            array_push($tab, $type['Typ_Libelle']);
+                        }
                     }
-                }
-                foreach($tab as $checkbox) {
-                    echo "<div><input class='form-check-input appearance-none h-4 w-4 m-4 border border-white rounded-xl bg-white checked:bg-[#B98F50] checked:shadow-inner checked:border-2 focus:outline-none transition duration-200 mt-1 align-top bg-no-repeat bg-center bg-contain float-left mr-2 cursor-pointer' type='checkbox' name='produits' value='".str_replace(' ', '', $checkbox)."' id='".str_replace(' ', '', $checkbox)."'><label class='form-check-label inline-block text-[#B98F50]' for='".str_replace(' ', '', $checkbox)."'> $checkbox</label></div>";
-                }
+                    foreach($tab as $checkbox) {
+                        echo "<div><input class='form-check-input appearance-none h-4 w-4 m-4 border border-white rounded-xl bg-white checked:bg-[#B98F50] checked:shadow-inner checked:border-2 focus:outline-none transition duration-200 mt-1 align-top bg-no-repeat bg-center bg-contain float-left mr-2 cursor-pointer' type='checkbox' name='produits' value='".str_replace(' ', '', $checkbox)."' id='".str_replace(' ', '', $checkbox)."'><label class='form-check-label inline-block text-[#B98F50]' for='".str_replace(' ', '', $checkbox)."'> $checkbox</label></div>";
+                    }
                 
                 ?>
-            
+
             <button onclick="checkoutHandler(false)" class="cart p-2 pl-5 pr-5 mt-10 bg-transparent border-2 border-[#B98F50] text-[#B98F50] text-lg rounded-lg transition-colors duration-700 transform hover:bg-[#B98F50] hover:text-[#4F0F15] flex justify-around">
-                <!-- <i class="material-icons">&#xe8cc; </i>  <p class="cart">Mon panier </p> <span class="ml-4 text-[#7B5F35]"> 0</span> -->
                 <ion-icon name="basket" class="material-icons">&#xe8cc;</ion-icon>Panier<span>0</span>
             </button> 
         </div> 
     </div>
+    <script>
+        var toggleBtn = document.getElementById('showFilter');
+        var ingredients = document.getElementById('myFilters');
+        var ingredients2 = document.getElementById('myFilters2');
 
-    <div class="lg:w-[75%]">
+        toggleBtn.addEventListener('click', function() {
+            toggleBtn.classList.toggle('translate-x-2/4');
+            ingredients.classList.toggle('translate-x-2/4');
+            ingredients2.classList.toggle('hidden');
+        })
+    </script>
+
+    <div class="w-[90%] lg:w-[75%] flex justify-evenly">
         <div class="grid gap-6 grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 mt-6">
             <?php
                     foreach($response as $value) {                                                
                         if ($value['Pro_IsWeb'] == 1){
                             echo '   
                                                          
-                                <div id="'.$value['Pro_Id'].'"  class="w-full prendlui max-w-sm mx-auto rounded-md shadow-black overflow-hidden bg-white hover:shadow-2xl transition-shadow ease-in duration-300 produit '.str_replace(' ', '', $value['Typ_Libelle']).'"> 
+                                <div id="'.$value['Pro_Id'].'"  class="w-full h-80 prendlui max-w-sm mx-auto rounded-md shadow-black overflow-hidden bg-white hover:shadow-2xl transition-shadow ease-in duration-300 produit '.str_replace(' ', '', $value['Typ_Libelle']).'"> 
                                     <dza href="?action=getThisProduct&id='.$value['Pro_Id'].'">
                                         <div class="flex items-end justify-end "> 
                                             <div class="h-56 w-full bg-cover object-cover bg-center"> 
@@ -228,7 +237,7 @@ function displayCart() {
                 <div class=" md:flex items-strech py-8 md:py-10 lg:py-8 border-t border-[#B98F50] text-[#B98F50] flex justify-around items-center">
                     <div class="product flex justify-around items-center">
                         <ion-icon class="material-icons cursor-pointer hover:text-[#7B5F35]">&#xe92e;</ion-icon>
-                        <div class="md:w-4/12 2xl:w-1/4 w-full">
+                        <div class="w-[25%]">
                             <img src="https://daxueconseil.fr/wp-content/uploads/2016/09/Daxue-Conseil-Les-produits-du-terroir-fran%C3%A7ais-en-Chine.jpg" class="h-full object-center object-cover md:block hidden" />
                             <img src="https://daxueconseil.fr/wp-content/uploads/2016/09/Daxue-Conseil-Les-produits-du-terroir-fran%C3%A7ais-en-Chine.jpg" class="md:hidden w-full h-full object-center object-cover" />
                         </div>
@@ -275,7 +284,11 @@ function manageQuantity() {
     let currentProduct = '';
     let existProduct;
     let cartItems = localStorage.getItem('productsInCart');
+
     cartItems = JSON.parse(cartItems);
+
+    
+
 
     for(let i=0; i < cartItems.length; i++) {
         decreaseButtons[i].addEventListener('click', () => {
