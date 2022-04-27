@@ -262,11 +262,11 @@ function displayCart() {
                         </div>
                     </div>
                     <div class="quantity float-both flex flex-col items-center">
-                        <ion-icon class="increase material-icons cursor-pointer hover:text-[#7B5F35]" name="arrow-dropright-circle"> &#xe148; </ion-icon>  
-                            <span>${item.inCart}</span>
+                        <ion-icon class="increase material-icons cursor-pointer hover:text-[#7B5F35] hidden" name="arrow-dropright-circle"> &#xe148; </ion-icon>  
+                            <span>- QTE - ${item.inCart}</span>
                             <input type='text' class='hidden' name='incart-${index}' id='incart-${index}' value='${item.inCart}' >
                             <input type='text' class='hidden' name='idprod-${index}' id='idprod-${index}' value='${item.Pro_Id}' >
-                        <ion-icon class="decrease material-icons cursor-pointer cursor-pointer hover:text-[#7B5F35]" name="arrow-dropleft-circle"> &#xe15d; </ion-icon>
+                        <ion-icon class="decrease material-icons cursor-pointer cursor-pointer hover:text-[#7B5F35] hidden" name="arrow-dropleft-circle"> &#xe15d; </ion-icon>
                     </div>
                 </div>
                 `;
@@ -277,8 +277,8 @@ function displayCart() {
 
         productContainer.innerHTML += `
             <div class="basketTotalContainer">
-                <h4 class="basketTotalTitle">Basket Total</h4>
-                <h4 class="basketTotal">$${cart} €</h4>
+                <h4 class="basketTotalTitle hidden">Basket Total</h4>
+                <h4 class="basketTotal hidden">$${cart} €</h4>
             </div>`
 
         deleteButtons();
