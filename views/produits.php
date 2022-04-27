@@ -227,10 +227,18 @@ function displayCart() {
 
     // console.log(productContainer)
     if( cartItems && productContainer ) {
-        // for (i = 0 ; i < nbrs ; i++) {
+            // let finalTab = [];
+            
             productContainer.innerHTML = '';
             cartItems.map( (item, index) => {
-                // console.log('item ' +item +' index ' +index)
+                
+                // let Pro_Id = {'Pro_Id': item.Pro_Id}
+                // let Pro_Qte = {'Pro_Quantite': item.inCart}
+                // let produit = {Pro_Id, Pro_Qte}; 
+                // console.log('Pro_Quantite ' +produit)          
+                
+                // finalTab.push(produit);
+
                 productContainer.innerHTML += `
                 <div class=" md:flex items-strech py-8 md:py-10 lg:py-8 border-t border-[#B98F50] text-[#B98F50] flex justify-around items-center">
                     <div class="product flex justify-around items-center">
@@ -262,8 +270,10 @@ function displayCart() {
                     </div>
                 </div>
                 `;
+                
                 // <div class="total hidden">${item.inCart * item.Pro_Prix}</div>
-            });
+        }
+        );
 
         productContainer.innerHTML += `
             <div class="basketTotalContainer">
@@ -273,7 +283,8 @@ function displayCart() {
 
         deleteButtons();
         manageQuantity();
-    }}
+    } 
+}
 // }
 
 

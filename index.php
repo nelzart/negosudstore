@@ -70,7 +70,79 @@ try { // On essaie de faire des choses
         && !empty($_POST['ville']) 
         && !empty($_POST['adresse']))
         {
-          sendCommand($_POST['adresse'], $_POST['adressecomp'], $_POST['codepostal'], $_POST['ville'], $_POST['pays'], $_POST['phone'], $_POST['mdp'], $_POST['email'], $_POST['Nom'], $_POST['prenom']);                         
+          
+          // $idProdTab = [];
+          // $inCartTab = [];
+          // $myBool = true;
+          // $i = 0 ;
+
+          // while ($myBool == true) {
+
+          //   if (!empty($_POST['incart-'.$i]) 
+          //   && !empty($_POST['idprod-'.$i])) {
+          //     array_push($inCartTab, $_POST['incart-'.$i]);
+
+          //     array_push($idProdTab, $_POST['idprod-'.$i]);
+          //     $i++ ;
+
+          //   } else {
+          //     $myBool == false;
+
+          //   }      
+            
+          // }
+          // var_dump($i);
+          // var_dump($inCartTab);
+          // var_dump($idProdTab);
+
+            $finalTab = [];
+            $i = 0;
+            $bool = true;
+            while ($bool == true)
+            {
+              if (!empty($_POST['incart-'.$i]))
+              {
+
+            //  traitement des données
+                $Uti_Adresse = $_POST['adresse'];
+                $Uti_CompAdress = $_POST['adressecomp'];
+                $Uti_Cp = $_POST['codepostal'];
+                $Uti_Ville = $_POST['ville'];
+                $Uti_Pays = $_POST['pays'];
+                $Uti_TelContact = $_POST['phone'];
+                $Uti_Mdp  = $_POST['mdp'];
+                $Uti_MailContact = $_POST['email'];
+                $Cli_Nom = $_POST['Nom'];
+                $Cli_Prenom = $_POST['prenom'];
+                $Coc_Eta_Id = 2;
+                $Pro_Id =  Intval($_POST['idprod-'.$i]) ;
+                $Pro_Quantite = Intval($_POST['incart-'.$i]);
+
+                $Products = array(
+                    'Uti_Adresse' => $Uti_Adresse, 
+                    'Uti_CompAdresse' => $Uti_CompAdress, 
+                    'Uti_Cp' => $Uti_Cp, 
+                    'Uti_Ville' => $Uti_Ville, 
+                    'Uti_Pays' => $Uti_Pays,
+                    'Uti_TelContact' => $Uti_TelContact,
+                    'Uti_Mdp' => $Uti_Mdp,
+                    'Uti_MailContact' => $Uti_MailContact,
+                    'Cli_Nom' => $Cli_Nom,
+                    'Cli_Prenom' => $Cli_Prenom,
+                    'Coc_Eta_Id' => $Coc_Eta_Id,
+                    'Pro_Id' => $Pro_Id,
+                    'Pro_Quantite' => $Pro_Quantite
+                );
+
+                array_push($finalTab, $Products);
+
+                $i++;
+
+              } else {
+              $bool = false;
+            }
+          }
+          sendCommand($finalTab);                         
         }
       }
     }
